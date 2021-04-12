@@ -1,0 +1,15 @@
+default_config:
+
+virtual:
+
+switch:
+  - platform: virtual
+    name: Switch 1
+  - platform: virtual
+    name: Switch 2
+
+light:
+  - platform: virtual
+    name: 'Light 1'
+
+automation: !include automations.yaml

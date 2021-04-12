@@ -1,0 +1,19 @@
+version: '3'
+services:
+  mosquitto:
+    container_name: kaf-mqtt
+    image: eclipse-mosquitto
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+    expose:
+      - "1883"
+
+  homeassistant:
+    container_name: kaf-ha
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./ha:/config
+    environment:
+      - TZ=Europe/Madrid
+    ports:
+      - "8123:8123"
