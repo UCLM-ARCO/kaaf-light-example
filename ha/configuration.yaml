@@ -1,5 +1,6 @@
 default_config:
 
+# https://github.com/twrecked/hass-virtual
 virtual:
 
 switch:
