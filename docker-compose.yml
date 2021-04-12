@@ -3,8 +3,6 @@ services:
   mosquitto:
     container_name: kaf-mqtt
     image: eclipse-mosquitto
-    volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
     expose:
       - "1883"
 
