@@ -1,0 +1,12 @@
+{
+    "rooms": [
+        {
+            "name": "bedroom",
+            "devices": ["motion sensor 1", "lamp 1"]
+        },
+        {
+            "name": "kitchen",
+            "devices": ["motion sensor 2"]
+        }
+    ]
+}
