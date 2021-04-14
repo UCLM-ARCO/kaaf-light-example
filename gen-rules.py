@@ -19,17 +19,45 @@ class RuleGenerator(Ice.Application):
         with open(argv[1]) as json_file:
             scene = json.load(json_file)
 
+        # ---------
+
         requirements = self.get_relations('require')
         provisions = self.get_relations('provide')
         rules = []
 
-        for requirement in requirements:
-            for room in scene['rooms']:
+        for room in scene['rooms']:
+            for requirement in requirements:
                 for provision in self.filter_rels(provisions, 'b', requirement['b']):
                     rule = self.gen_rule(room['name'], requirement['a'], provision['a'])
                     rules.append(rule)
         
         [print('{}\n'.format(rule)) for rule in rules]
+
+    #     requirements = self.get_relations('require')
+    #     provisions = self.get_relations('provide')
+    #     implications = self.get_relations('entail')
+    #     rules = []
+
+    #     for room in scene['rooms']:
+    #         for device in room['devices']:
+    #             for provision in self.filter_rels(provisions, 'a', device['type']):
+    #                 if self.is_sensor(device):
+    #                     lhs = '{} from {}'.format(provision['b'], device['id'])
+    #                     for implication in self.filter_rels(implications, 'a', provision['b']):
+    #                         rhs = '{}: {}'.format(room['name'], implication['b'])
+    #                         rules.append('{}\n=>\n{}'.format(lhs, rhs))
+    #                 else:
+    #                     rhs = 'provide {} with {}'.format(provision['b'], device['id'])
+    #                     for requeriment in self.filter_rels(requirements, 'b', provision['b']):
+    #                         lhs = '{}: {}'.format(room['name'], requeriment['a'])
+    #                         rules.append('{}\n=>\n{}'.format(lhs, rhs))
+        
+    #     [print('{}\n'.format(rule)) for rule in rules]
+    
+    # def is_sensor(self, device):
+    #     request = '(is-x-a-y? {%s}{%s})' % (device['type'], 'sensor')
+    #     reply = self.scone.request(request)
+    #     return reply == 'YES'
 
     def gen_rule(self, room, pre, action):
         protasis = '{}: {}'.format(room, pre)     # part of the LHS

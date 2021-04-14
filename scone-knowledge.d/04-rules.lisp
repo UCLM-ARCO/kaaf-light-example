@@ -37,8 +37,9 @@
 (new-statement {motion event} {entail} {inhabited room})
 
 ;; ---------- Illumination
-(new-statement {on light source} {provide} {light})
-(new-not-statement {off light source} {provide} {light})
+;; (new-statement {on light source} {provide} {light})
+;; (new-not-statement {off light source} {provide} {light})
+(new-statement {lamp} {provide} {light}) ;; relations are not inherited!!
 
 (new-statement {inhabited room} {require} {light})
 (new-not-statement {uninhabited room} {require} {light})

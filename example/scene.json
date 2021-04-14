@@ -2,11 +2,16 @@
     "rooms": [
         {
             "name": "bedroom",
-            "devices": ["motion sensor 1", "lamp 1"]
+            "devices": [
+                {"id": "ms1",   "type": "motion sensor"}
+            ]
         },
         {
             "name": "kitchen",
-            "devices": ["motion sensor 2"]
+            "devices": [
+                {"id": "ms2",   "type": "motion sensor"},
+                {"id": "l2",    "type": "lamp"}
+            ]
         }
     ]
 }
