@@ -24,6 +24,7 @@
 (new-relation {entail} ;; fact A entails B. It generates a IMPLICATION
         :a-inst-of {thing}
         :b-inst-of {thing}
+        :c-inst-of {thing}
         :transitive t)
 
 ;; FIXME:
@@ -43,5 +44,14 @@
 
 (new-statement {inhabited room} {require} {light})
 (new-not-statement {uninhabited room} {require} {light})
+
+(new-context {day} {general})
+(new-context {night} {general})
+
+(in-context {day})
+(new-statement {window} {provide} {light})
+(in-context {night})
+(new-not-statement {window} {provide} {light})
+(in-context {general})
 
 

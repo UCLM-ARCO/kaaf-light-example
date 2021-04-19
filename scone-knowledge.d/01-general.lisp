@@ -5,6 +5,9 @@
 
 (new-type {light source} {thing})
 
+(new-type {window} {thing})
+(new-is-a {window} {light source})
+
 ;; ########## DEVICES ##########
 (new-type {device} {thing})
 (new-intersection-type {service} '({device} {intangible}))
