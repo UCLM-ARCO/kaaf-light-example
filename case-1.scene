@@ -1,17 +1,35 @@
 {
-    "rooms": [
-        {
-            "name": "bedroom",
-            "devices": [
-                {"id": "ms1",   "type": "motion sensor"}
-            ]
-        },
-        {
-            "name": "kitchen",
-            "devices": [
-                {"id": "ms2",   "type": "motion sensor"},
-                {"id": "l2",    "type": "lamp"}
-            ]
-        }
+    "name": "bath",
+    "natural light": True,
+    "devices": []
+},
+{
+    "name": "living-room",
+    "natural light": True,
+    "devices": [
+        {"id": "living-room-ms", "type": "motion sensor"},
+        {"id": "living-room-b",  "type": "bulb"}
+    ]
+},
+{
+    "name": "bedroom",
+    "natural light": True,
+    "devices": [
+        {"id": "bedroom-ms",     "type": "motion sensor"}
+    ]
+},
+{
+    "name": "kitchen",
+    "natural light": True,
+    "devices": [
+        {"id": "kitchen-b",      "type": "bulb"}
+    ]
+},
+{
+    "name": "garage",
+    "natural light": False,
+    "devices": [
+        {"id": "garage-ms",      "type": "motion sensor"},
+        {"id": "garage-b",       "type": "bulb"}
     ]
 }
