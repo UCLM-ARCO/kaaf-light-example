@@ -30,30 +30,39 @@ class RuleGenerator(Ice.Application):
         #         for provision in self.filter_rels(provisions, 'b', requirement['b']):
         #             rule = self.gen_rule(room['name'], requirement['a'], provision['a'])
         #             rules.append(rule)
-        
+
         # [print('{}\n'.format(rule)) for rule in rules]
 
-        requirements = self.get_relations('require')
-        provisions = self.get_relations('provide')
-        implications = self.get_relations('entail')
-        rules = []
+        self.requirements = self.get_relations('require')
+        self.provisions = self.get_relations('provide')
+        self.implications = self.get_relations('entail')
+        self.rules = []
 
         for room in rooms:
-            for device in room['devices']:
-                for provision in self.filter_rels(provisions, 'a', device['type']):
-                    if self.is_sensor(device):
-                        lhs = '{} from {}'.format(provision['b'], device['id'])
-                        for implication in self.filter_rels(implications, 'a', provision['b']):
-                            rhs = '{}: {}'.format(room['name'], implication['b'])
-                            rules.append('{}\n=>\n{}'.format(lhs, rhs))
-                    else:
-                        rhs = 'provide {} with {}'.format(provision['b'], device['id'])
-                        for requeriment in self.filter_rels(requirements, 'b', provision['b']):
-                            lhs = '{}: {}'.format(room['name'], requeriment['a'])
-                            rules.append('{}\n=>\n{}'.format(lhs, rhs))
-        
-        [print('{}\n'.format(rule)) for rule in rules]
-    
+            self.build_room(room)
+
+    def build_room(self, room):
+        for device in room['devices']:
+            for provision in self.filter_rels(self.provisions, 'a', device['type']):
+                if self.is_sensor(device):
+                    self.build_sensor(room, provision, device)
+                else:
+                    self.build_FIXME()
+
+        [print('{}\n'.format(rule)) for rule in self.rules]
+
+    def build_sensor(self, room, provision, device):
+        lhs = '{} from {}'.format(provision['b'], device['id'])
+        for implication in self.filter_rels(self.implications, 'a', provision['b']):
+            rhs = '{}: {}'.format(room['name'], implication['b'])
+            self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
+
+    def build_FIXME(self, room, provision, device):
+        rhs = 'provide {} with {}'.format(provision['b'], device['id'])
+        for requeriment in self.filter_rels(self.requirements, 'b', provision['b']):
+            lhs = '{}: {}'.format(room['name'], requeriment['a'])
+            self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
+
     def is_sensor(self, device):
         request = '(is-x-a-y? {%s}{%s})' % (device['type'], 'sensor')
         reply = self.scone.request(request)
@@ -81,7 +90,7 @@ class RuleGenerator(Ice.Application):
         reply = self.scone.request(request)
 
         return self.parse_entities(reply)[0]
-        
+
     def get_relations(self, relation_name):
         relation_ids = self.get_instances(relation_name)
         relations = []
