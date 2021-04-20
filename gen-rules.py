@@ -35,11 +35,12 @@ class RuleGenerator(Ice.Application):
 
         self.requirements = self.get_relations('require')
         self.implications = self.get_relations('indicate')
-        self.provisions = self.get_relations('provide')
         self.rules = []
 
         for room in rooms:
             self.build_room(room)
+        
+        [print('----\n{}'.format(rule)) for rule in self.rules]
 
     def build_room(self, room):
         for device in room['devices']:
@@ -47,9 +48,7 @@ class RuleGenerator(Ice.Application):
                 if self.is_sensor(device):
                     self.build_sensor(room, provision, device)
                 else:
-                    self.build_FIXME(room, provision, device)
-
-        [print('----\n{}'.format(rule)) for rule in self.rules]
+                    self.build_actuator(room, provision, device)
 
     def build_sensor(self, room, provision, device):
         lhs = '{} from {}'.format(provision['resource'], device['id'])
@@ -57,7 +56,7 @@ class RuleGenerator(Ice.Application):
             rhs = '{}: {}'.format(room['name'], implication['b'])
             self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
 
-    def build_FIXME(self, room, provision, device):
+    def build_actuator(self, room, provision, device):
         rhs = 'provide {} with {}'.format(provision['resource'], device['id'])
         for requeriment in self.filter_rels(self.requirements, 'b', provision['resource']):
             lhs = '{}: {}'.format(room['name'], requeriment['a'])
