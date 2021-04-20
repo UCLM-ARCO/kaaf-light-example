@@ -2,10 +2,11 @@
 
 (new-type {resource} {thing})
 (new-is-a {information} {resource}) ;; already in the KB core
+(new-is-a {event} {information})
 
 (new-is-a {light} {resource})
-(new-is-a {motion event} {information})
 (new-is-a {occupied room} {information})
+(new-is-a {occupancy} {event})
 
 (new-type-role {provider} {thing} {thing})
 (new-type-role {location} {thing} {place})
@@ -22,12 +23,12 @@
 
 ;; ---------- Occupation
 (new-indv {motion sensor:location} {place})
-(x-is-the-y-of-z {motion sensor} {provider} {motion event})
+(x-is-the-y-of-z {motion sensor} {provider} {occupancy})
 (x-is-the-y-of-z {motion sensor:location} {location} {motion sensor})
-(new-statement {motion event} {indicate} {occupied room} :c (the-x-of-y {location} (the-x-role-of-y {provider} {motion event})))
+(new-statement {occupancy} {indicate} {occupied room} :c (the-x-of-y {location} (the-x-role-of-y {provider} {motion event})))
 
 (new-indv {occupied room:location} {place})
-(x-is-the-y-of-z {occupied room} {occupation status} {occupied room:location})
+(x-is-the-y-of-z {occupied room:location} {location} {occupied room})
 (new-statement {occupied room} {require} {light} :c {occupied room:location})
 
 ;; ---------- Illumination

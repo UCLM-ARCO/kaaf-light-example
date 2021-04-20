@@ -7,35 +7,41 @@ from kaf import AbstractRuleBuilder, AbstractRule,  Semantic
 
 class RulegenTests(TestCase):
     def setUp(self):
-        ic = Ice.initialize()
-        proxy = ic.stringToProxy('scone -t:tcp -p 5001')
+        self.ic = Ice.initialize()
+        proxy = self.ic.stringToProxy('scone -t:tcp -p 5001')
         self.scone = Semantic.SconeServicePrx.checkedCast(proxy)
+    
+    def tearDown(self):
+        self.ic.destroy()
 
-    def test_rule(self):
-        sut = AbstractRuleBuilder(self.scone, 'test/simple.scene')
+    def test_fact_rule(self):
+        sut = AbstractRuleBuilder(self.scone, 'test/fact.scene')
         sut.build()
-
-        # expected = AbstractRule(
-        #     left = [{
-        #         'agent': 'room-1-ms',
-        #         'value': 'occupancy'
-        #     }],
-        #     right = [{
-        #         'location': 'living-room',
-        #         'value': 'occupied room'
-        #     }])
 
         expected = AbstractRule(
             left = [{
                 'agent': 'room-1-ms',
-                'value': 'motion event'
+                'value': 'occupancy'
             }],
             right = [{
                 'location': 'room-1',
-                'value': 'occupancy'
+                'value': 'occupied room'
             }])
 
         assert_that(sut.rules, is_([expected]))
+    
+    # def test_action_rule(self):
+    #     sut = AbstractRuleBuilder(self.scone, 'test/action.scene')
+    #     sut.build()
 
-# motion event from living-room-ms
-# living-room: occupied room
+    #     expected = AbstractRule(
+    #         left = [{
+    #             'location': 'room-1',
+    #             'value': 'occupied room'
+    #         }],
+    #         right = [{
+    #             'action': 'turn on',
+    #             'value': 'occupied room'
+    #         }])
+
+    #     assert_that(sut.rules, is_([expected]))

@@ -7,10 +7,10 @@ all: scone-start run-case-1
 
 .ONESHELL:
 scone-start:
-	scone-wrapper &
+	scone-wrapper & sleep 3
 
 scone-stop:
 	kill -2 $$(cat ${WRAPPER_PID})
 
 run-case-1:
-	./gen-rules.py case-1.scene --Ice.Config=scone.config
+	./kaf.py case-1.scene --Ice.Config=scone.config
