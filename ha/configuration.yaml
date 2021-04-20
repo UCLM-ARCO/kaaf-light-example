@@ -3,14 +3,43 @@ default_config:
 # https://github.com/twrecked/hass-virtual
 virtual:
 
-switch:
+binary_sensor:
   - platform: virtual
-    name: Switch 1
+    name: 'living-room-ms'
+    class: occupancy
   - platform: virtual
-    name: Switch 2
+    name: 'bedroom-ms'
+    class: occupancy
+  - platform: virtual
+    name: 'garage-ms'
+    class: occupancy
 
 light:
   - platform: virtual
-    name: 'Light 1'
+    name: 'living-room-b'
+  - platform: virtual
+    name: 'kitchen-b'
+  - platform: virtual
+    name: 'garage-b'
+
+group:
+  living-room:
+    name: Living Room
+    entities:
+      - binary_sensor.virtual_living_room_ms
+      - light.virtual_living_room_b
+  bedroom:
+    name: Bedroom
+    entities:
+      - binary_sensor.virtual_bedroom_ms
+  kitchen:
+    name: Kitchen
+    entities:
+      - light.virtual_kitchen_b
+  garage:
+    name: Garage
+    entities:
+      - binary_sensor.virtual_garage_ms
+      - light.virtual_garage_b
 
 automation: !include automations.yaml
