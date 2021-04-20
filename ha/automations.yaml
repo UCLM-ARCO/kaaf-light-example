@@ -1,0 +1,12 @@
+- id: '1618919764304'
+  alias: light at living room
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.virtual_living_room_ms
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.virtual_living_room_b
+  mode: single

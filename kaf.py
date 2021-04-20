@@ -25,7 +25,7 @@ class RuleGenerator(Ice.Application):
 
         for room in rooms:
             self.build_room(room)
-        
+
         [print('----\n{}'.format(rule)) for rule in self.rules]
 
     def build_room(self, room):
@@ -52,7 +52,7 @@ class RuleGenerator(Ice.Application):
         request = '(is-x-a-y? {%s}{sensor})' % (device['type'])
         reply = self.scone.request(request)
         return reply == 'YES'
-    
+
     def get_provisions(self, provider):
         request = '(list-all-x-inverse-of-y {provider}{%s})' % (provider)
         reply = self.scone.request(request)
@@ -112,4 +112,5 @@ class RuleGenerator(Ice.Application):
         return scone
 
 
-sys.exit(RuleGenerator().main(sys.argv))
+if __name__ == '__main__':
+    sys.exit(RuleGenerator().main(sys.argv))
