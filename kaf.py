@@ -54,17 +54,17 @@ class AbstractRuleBuilder:
 
     def build_sensor(self, room, provision, device):
         lhs = [{
-            'agent': device['id'], 
+            'agent': device['id'],
             'value': provision['resource']
         }]
-        
+
         rhs = []
         for implication in self.filter_rels(self.implications, 'a', provision['resource']):
             rhs.append({
-                'location': room['name'], 
+                'location': room['name'],
                 'value': implication['b']
                 })
-          
+
             self.rules.append(AbstractRule(lhs, rhs))
 
     def build_actuator(self, room, provision, device):
@@ -127,6 +127,13 @@ class AbstractRuleBuilder:
 
         return relations
 
+
+class KAF_Client(Ice.Application):
+    def run(self, argv):
+        self.ic = self.communicator()
+        scone = self.scone_service()
+        AbstractRuleBuilder(scone, argv[1])
+
     def scone_service(self):
         proxy = self.ic.propertyToProxy('Scone.Proxy')
         scone = Semantic.SconeServicePrx.checkedCast(proxy)
@@ -136,6 +143,5 @@ class AbstractRuleBuilder:
 
         return scone
 
-
 if __name__ == '__main__':
-    sys.exit(RuleGenerator().main(sys.argv))
+    sys.exit(KAF_Client().main(sys.argv))
