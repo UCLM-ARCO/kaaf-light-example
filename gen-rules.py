@@ -19,20 +19,6 @@ class RuleGenerator(Ice.Application):
         with open(argv[1]) as json_file:
             rooms = json.load(json_file)
 
-        # ---------
-
-        # requirements = self.get_relations('require')
-        # provisions = self.get_relations('provide')
-        # rules = []
-
-        # for room in scene['rooms']:
-        #     for requirement in requirements:
-        #         for provision in self.filter_rels(provisions, 'b', requirement['b']):
-        #             rule = self.gen_rule(room['name'], requirement['a'], provision['a'])
-        #             rules.append(rule)
-
-        # [print('{}\n'.format(rule)) for rule in rules]
-
         self.requirements = self.get_relations('require')
         self.implications = self.get_relations('indicate')
         self.rules = []
@@ -66,11 +52,6 @@ class RuleGenerator(Ice.Application):
         request = '(is-x-a-y? {%s}{sensor})' % (device['type'])
         reply = self.scone.request(request)
         return reply == 'YES'
-
-    def gen_rule(self, room, pre, action):
-        protasis = '{}: {}'.format(room, pre)     # part of the LHS
-        apodasis = '{}: {}'.format(room, action)  # part of the RHS
-        return '{}\n=>\n{}'.format(protasis, apodasis)
     
     def get_provisions(self, provider):
         request = '(list-all-x-inverse-of-y {provider}{%s})' % (provider)
