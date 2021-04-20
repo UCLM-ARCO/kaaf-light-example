@@ -1,0 +1,8 @@
+[
+    {
+        "name": "room-1",
+        "devices": [
+            {"id": "room-1-ms", "type": "motion sensor"}
+        ]
+    }
+]
