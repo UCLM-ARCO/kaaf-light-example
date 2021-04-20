@@ -64,7 +64,7 @@ class RuleGenerator(Ice.Application):
             self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
 
     def is_sensor(self, device):
-        request = '(is-x-a-y? {%s}{%s})' % (device['type'], 'sensor')
+        request = '(is-x-a-y? {%s}{sensor})' % (device['type'])
         reply = self.scone.request(request)
         return reply == 'YES'
 
