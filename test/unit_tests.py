@@ -30,18 +30,18 @@ class RulegenTests(TestCase):
 
         assert_that(sut.rules, is_([expected]))
     
-    # def test_action_rule(self):
-    #     sut = AbstractRuleBuilder(self.scone, 'test/action.scene')
-    #     sut.build()
+    def test_action_rule(self):
+        sut = AbstractRuleBuilder(self.scone, 'test/action.scene')
+        sut.build()
 
-    #     expected = AbstractRule(
-    #         left = [{
-    #             'location': 'room-1',
-    #             'value': 'occupied room'
-    #         }],
-    #         right = [{
-    #             'action': 'turn on',
-    #             'object': 'room-1-b'
-    #         }])
+        expected = AbstractRule(
+            left = [{
+                'location': 'room-1',
+                'value': 'occupied room'
+            }],
+            right = [{
+                'action': 'provide light',
+                'object': 'room-1-b'
+            }])
 
-    #     assert_that(sut.rules, is_([expected]))
+        assert_that(sut.rules, is_([expected]))

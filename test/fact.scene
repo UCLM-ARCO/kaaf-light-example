@@ -1,6 +1,7 @@
 [
     {
         "name": "room-1",
+        "natural light": false,
         "devices": [
             {"id": "room-1-ms", "type": "motion sensor"}
         ]
