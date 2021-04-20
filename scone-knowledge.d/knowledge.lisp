@@ -1,13 +1,38 @@
 (in-context {general})
 
+(new-type {user} {person})
+(new-type {room} {place})
+(new-type {building element} {thing})
+(new-type {light source} {thing})
+
+(new-type {window} {building element})
+(new-is-a {window} {light source})
+
+;; ########## DEVICES ##########
+(new-type {device} {thing})
+(new-intersection-type {service} '({device} {intangible}))
+(new-intersection-type {transducer} '({device} {physical object}))
+(new-type {sensor} {transducer})
+(new-type {actuator} {transducer})
+
+;; ---------- Sensors
+(new-type {light sensor} {sensor})
+(new-type {motion sensor} {sensor})
+(new-type {door sensor} {sensor})
+
+;; ---------- Actuators
+(new-intersection-type {bulb} '({light source} {actuator}))
+
+;; ########## RESOURCES ##########
 (new-type {resource} {thing})
 (new-is-a {information} {resource}) ;; already in the KB core
 (new-is-a {event} {information})
 
 (new-is-a {light} {resource})
-(new-is-a {occupied room} {information})
-(new-is-a {occupancy} {event})
+(new-type {occupied room} {information})
+(new-type {occupancy} {event})
 
+;; ########## PROVISIONS/REQUIREMENTS ##########
 (new-type-role {provider} {thing} {thing})
 (new-type-role {location} {thing} {place})
 

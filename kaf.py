@@ -30,6 +30,7 @@ class AbstractRuleBuilder:
     def __init__(self, scone, scenario):
         self.scone = scone
         self.scenario = scenario
+        self.build()
 
     def build(self):
         with open(self.scenario) as json_file:
@@ -42,7 +43,7 @@ class AbstractRuleBuilder:
         for room in rooms:
             self.build_room(room)
 
-        # [print('----\n{}'.format(rule)) for rule in self.rules]
+        [print('----\n{}'.format(rule)) for rule in self.rules]
 
     def build_room(self, room):
         for device in room['devices']:
@@ -142,6 +143,7 @@ class KAF_Client(Ice.Application):
             raise RuntimeError('Invalid proxy')
 
         return scone
+
 
 if __name__ == '__main__':
     sys.exit(KAF_Client().main(sys.argv))
