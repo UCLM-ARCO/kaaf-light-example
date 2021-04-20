@@ -11,12 +11,28 @@ Ice.loadSlice('-I /usr/share/slice /usr/share/slice/dharma/scone-wrapper.ice --a
 import Semantic
 
 
-class RuleGenerator(Ice.Application):
-    def run(self, argv):
-        self.ic = self.communicator()
-        self.scone = self.scone_service()
+class AbstractRule:
+    def __init__(self, left, right):
+        self.left = left
+        self.right = right
 
-        with open(argv[1]) as json_file:
+    def __eq__(self, other):
+        if not isinstance(other, AbstractRule):
+            return False
+
+        return (self.left, self.right) == (other.left, other.right)
+
+    def __repr__(self):
+        return "AbstractRule:\n{}\n=>\n{}".format(self.left, self.right)
+
+
+class AbstractRuleBuilder:
+    def __init__(self, scone, scenario):
+        self.scone = scone
+        self.scenario = scenario
+
+    def build(self):
+        with open(self.scenario) as json_file:
             rooms = json.load(json_file)
 
         self.requirements = self.get_relations('require')
@@ -26,7 +42,7 @@ class RuleGenerator(Ice.Application):
         for room in rooms:
             self.build_room(room)
 
-        [print('----\n{}'.format(rule)) for rule in self.rules]
+        # [print('----\n{}'.format(rule)) for rule in self.rules]
 
     def build_room(self, room):
         for device in room['devices']:
@@ -37,10 +53,19 @@ class RuleGenerator(Ice.Application):
                     self.build_actuator(room, provision, device)
 
     def build_sensor(self, room, provision, device):
-        lhs = '{} from {}'.format(provision['resource'], device['id'])
+        lhs = [{
+            'agent': device['id'], 
+            'value': provision['resource']
+        }]
+        
+        rhs = []
         for implication in self.filter_rels(self.implications, 'a', provision['resource']):
-            rhs = '{}: {}'.format(room['name'], implication['b'])
-            self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
+            rhs.append({
+                'location': room['name'], 
+                'value': implication['b']
+                })
+          
+            self.rules.append(AbstractRule(lhs, rhs))
 
     def build_actuator(self, room, provision, device):
         rhs = 'provide {} with {}'.format(provision['resource'], device['id'])
