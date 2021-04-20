@@ -41,7 +41,7 @@ class RulegenTests(TestCase):
     #         }],
     #         right = [{
     #             'action': 'turn on',
-    #             'value': 'occupied room'
+    #             'object': 'room-1-b'
     #         }])
 
     #     assert_that(sut.rules, is_([expected]))
