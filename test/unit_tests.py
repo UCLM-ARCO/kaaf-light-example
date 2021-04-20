@@ -40,7 +40,7 @@ class RulegenTests(TestCase):
                 'value': 'occupied room'
             }],
             right = [{
-                'action': 'provide light',
+                'action': 'provide light',  # FIXME: provide light -> turn on
                 'object': 'room-1-b'
             }])
 
