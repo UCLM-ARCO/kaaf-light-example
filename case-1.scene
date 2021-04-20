@@ -1,35 +1,37 @@
-{
-    "name": "bath",
-    "natural light": True,
-    "devices": []
-},
-{
-    "name": "living-room",
-    "natural light": True,
-    "devices": [
-        {"id": "living-room-ms", "type": "motion sensor"},
-        {"id": "living-room-b",  "type": "bulb"}
-    ]
-},
-{
-    "name": "bedroom",
-    "natural light": True,
-    "devices": [
-        {"id": "bedroom-ms",     "type": "motion sensor"}
-    ]
-},
-{
-    "name": "kitchen",
-    "natural light": True,
-    "devices": [
-        {"id": "kitchen-b",      "type": "bulb"}
-    ]
-},
-{
-    "name": "garage",
-    "natural light": False,
-    "devices": [
-        {"id": "garage-ms",      "type": "motion sensor"},
-        {"id": "garage-b",       "type": "bulb"}
-    ]
-}
+[
+    {
+        "name": "bath",
+        "natural light": true,
+        "devices": []
+    },
+    {
+        "name": "living-room",
+        "natural light": true,
+        "devices": [
+            {"id": "living-room-ms", "type": "motion sensor"},
+            {"id": "living-room-b",  "type": "bulb"}
+        ]
+    },
+    {
+        "name": "bedroom",
+        "natural light": true,
+        "devices": [
+            {"id": "bedroom-ms",     "type": "motion sensor"}
+        ]
+    },
+    {
+        "name": "kitchen",
+        "natural light": true,
+        "devices": [
+            {"id": "kitchen-b",      "type": "bulb"}
+        ]
+    },
+    {
+        "name": "garage",
+        "natural light": false,
+        "devices": [
+            {"id": "garage-ms",      "type": "motion sensor"},
+            {"id": "garage-b",       "type": "bulb"}
+        ]
+    }
+]

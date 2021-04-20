@@ -17,7 +17,7 @@ class RuleGenerator(Ice.Application):
         self.scone = self.scone_service()
 
         with open(argv[1]) as json_file:
-            scene = json.load(json_file)
+            rooms = json.load(json_file)
 
         # ---------
 
@@ -38,7 +38,7 @@ class RuleGenerator(Ice.Application):
         implications = self.get_relations('entail')
         rules = []
 
-        for room in scene['rooms']:
+        for room in rooms:
             for device in room['devices']:
                 for provision in self.filter_rels(provisions, 'a', device['type']):
                     if self.is_sensor(device):
