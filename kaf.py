@@ -64,15 +64,29 @@ class AbstractRuleBuilder:
             rhs.append({
                 'location': room['name'],
                 'value': implication['b']
-                })
+            })
 
             self.rules.append(AbstractRule(lhs, rhs))
 
     def build_actuator(self, room, provision, device):
-        rhs = 'provide {} with {}'.format(provision['resource'], device['id'])
+        rhs = [{
+            'action': 'provide {}'.format(provision['resource']),
+            'object': device['id']
+        }]
+
+        lhs = []
         for requeriment in self.filter_rels(self.requirements, 'b', provision['resource']):
-            lhs = '{}: {}'.format(room['name'], requeriment['a'])
-            self.rules.append('{}\n=>\n{}'.format(lhs, rhs))
+            lhs = [{
+                'location': room['name'],
+                'value': requeriment['a']
+            }]
+
+            if room['natural light'] == True:
+                lhs.append({
+                    'time': 'night'
+                })
+
+            self.rules.append(AbstractRule(lhs, rhs))
 
     def is_sensor(self, device):
         request = '(is-x-a-y? {%s}{sensor})' % (device['type'])
