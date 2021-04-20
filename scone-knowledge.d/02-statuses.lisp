@@ -18,19 +18,19 @@
 (x-is-the-y-of-z {on} {device status} {on device})
 (x-is-the-y-of-z {off} {device status} {off device})
 
-;; ---------- inhabited/uninhabited place
-(new-type {inhabited place} {place})
-(new-type {uninhabited place} {place})
+;; ---------- occupied/unoccupied place
+(new-type {occupied place} {place})
+(new-type {unoccupied place} {place})
 (new-complete-split {place}
- '({inhabited place}
-   {uninhabited place}))
+ '({occupied place}
+   {unoccupied place}))
 
-(new-indv {inhabited} {status})
-(new-indv {uninhabited} {status})
+(new-indv {occupied} {status})
+(new-indv {unoccupied} {status})
 
-(new-type-role {place status} {place} {status})
-(x-is-the-y-of-z {inhabited} {place status} {inhabited place})
-(x-is-the-y-of-z {uninhabited} {place status} {uninhabited place})
+(new-type-role {occupation status} {place} {status})
+(x-is-the-y-of-z {occupied} {occupation status} {occupied place})
+(x-is-the-y-of-z {unoccupied} {occupation status} {unoccupied place})
 
 ;; ########## SPECIFIC STATUSES ##########
 ;; ---------- Illumination
@@ -40,5 +40,5 @@
 (new-is-a {off light source} {off device})
 
 ;; ---------- Occupation
-(new-indv {inhabited room} {inhabited place})
-(new-indv {uninhabited room} {uninhabited place})
+(new-indv {occupied room} {occupied place})
+(new-indv {unoccupied room} {unoccupied place})

@@ -2,10 +2,10 @@
 
 (new-type {user} {person})
 (new-type {room} {place})
-
+(new-type {building element} {thing})
 (new-type {light source} {thing})
 
-(new-type {window} {thing})
+(new-type {window} {building element})
 (new-is-a {window} {light source})
 
 ;; ########## DEVICES ##########
@@ -21,7 +21,7 @@
 (new-type {door sensor} {sensor})
 
 ;; ---------- Actuators
-(new-intersection-type {lamp} '({light source} {actuator}))
+(new-intersection-type {bulb} '({light source} {actuator}))
 
 ;; ########## RESOURCES ##########
 (new-type {light} {thing})
