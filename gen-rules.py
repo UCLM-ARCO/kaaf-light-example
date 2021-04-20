@@ -47,7 +47,7 @@ class RuleGenerator(Ice.Application):
                 if self.is_sensor(device):
                     self.build_sensor(room, provision, device)
                 else:
-                    self.build_FIXME()
+                    self.build_FIXME(room, provision, device)
 
         [print('{}\n'.format(rule)) for rule in self.rules]
 
