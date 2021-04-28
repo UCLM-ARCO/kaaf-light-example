@@ -13,4 +13,4 @@ scone-stop:
 	kill -2 $$(cat ${WRAPPER_PID})
 
 run-usecase:
-	./kaf.py usecase.scenario --Ice.Config=scone.config
+	./kaaf.py usecase.scenario --Ice.Config=scone.config
