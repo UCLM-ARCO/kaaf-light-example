@@ -17,10 +17,13 @@ binary_sensor:
 light:
   - platform: virtual
     name: 'living-room-b'
+    initial_value: 'off'
   - platform: virtual
     name: 'kitchen-b'
+    initial_value: 'off'
   - platform: virtual
     name: 'garage-b'
+    initial_value: 'off'
 
 group:
   living-room:
