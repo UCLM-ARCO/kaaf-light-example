@@ -1,0 +1,93 @@
+{
+    "version": 1,
+    "key": "auth",
+    "data": {
+        "users": [
+            {
+                "id": "28e9cf44a7174d51ba4754e6de48abaa",
+                "group_ids": [
+                    "system-admin"
+                ],
+                "is_owner": true,
+                "is_active": true,
+                "name": "kaaf",
+                "system_generated": false
+            }
+        ],
+        "groups": [
+            {
+                "id": "system-admin",
+                "name": "Administrators"
+            },
+            {
+                "id": "system-users",
+                "name": "Users"
+            },
+            {
+                "id": "system-read-only",
+                "name": "Read Only"
+            }
+        ],
+        "credentials": [
+            {
+                "id": "dc8715f3a2f647c0aa8cca321e1bec53",
+                "user_id": "28e9cf44a7174d51ba4754e6de48abaa",
+                "auth_provider_type": "homeassistant",
+                "auth_provider_id": null,
+                "data": {
+                    "username": "admin"
+                }
+            }
+        ],
+        "refresh_tokens": [
+            {
+                "id": "4db07e93008e4744a76c016f32d7cebd",
+                "user_id": "28e9cf44a7174d51ba4754e6de48abaa",
+                "client_id": "http://localhost:8123/",
+                "client_name": null,
+                "client_icon": null,
+                "token_type": "normal",
+                "created_at": "2021-05-03T22:31:36.641705+00:00",
+                "access_token_expiration": 1800.0,
+                "token": "a7ce7e42e4520113f9c367bfc7a6fd77b9afe87d9521df69ca4505c4aa517272a96c8d383df67404adfb2142ed95b75f6de7366f6249779cf261c373702e8e63",
+                "jwt_key": "b60fc69a286e85e9661158b1de9852f9b7479793540840946d3318b745abfdc15b5b305c8d0323f62b6c4b661c0f8a245dde85c544aaa6ce7b5d17aab037cf41",
+                "last_used_at": "2021-05-03T22:31:36.641800+00:00",
+                "last_used_ip": "172.18.0.1",
+                "credential_id": "dc8715f3a2f647c0aa8cca321e1bec53",
+                "version": "2021.4.6"
+            },
+            {
+                "id": "ce2a9824eeb545ffb03a8f7bc65fa5b6",
+                "user_id": "28e9cf44a7174d51ba4754e6de48abaa",
+                "client_id": "http://localhost:8123/",
+                "client_name": null,
+                "client_icon": null,
+                "token_type": "normal",
+                "created_at": "2021-05-03T22:35:42.779086+00:00",
+                "access_token_expiration": 1800.0,
+                "token": "f6f2dae0c1e45e66a8b7749f785ed5b31b12b48449d610222c5c83d8815647b85021082135211a94151ef4b04fb10c154303f2eb06da93fb815c846a2114a673",
+                "jwt_key": "4b70d41c2acb6850e2d92f61c0d5277564d140f99ffbefd7b3d21d7f1435e4fa2e53391ba0534073d54d1fcc3c607ef69acf4cef00058ca2053acfdfed146aed",
+                "last_used_at": "2021-05-03T22:35:42.779195+00:00",
+                "last_used_ip": "172.18.0.1",
+                "credential_id": "dc8715f3a2f647c0aa8cca321e1bec53",
+                "version": "2021.4.6"
+            },
+            {
+                "id": "81d03546dd494f61ba0600e7512b3a95",
+                "user_id": "28e9cf44a7174d51ba4754e6de48abaa",
+                "client_id": null,
+                "client_name": "kaaf",
+                "client_icon": null,
+                "token_type": "long_lived_access_token",
+                "created_at": "2021-05-03T22:36:23.267818+00:00",
+                "access_token_expiration": 315360000.0,
+                "token": "bf4dadbab689b2e090716b1648a05df8e757b994e6477b9e01d0e448d811d24989178a04f2bb52473df6926f745ce251a2dc4c3ca2008122bffdd9625128f360",
+                "jwt_key": "7558aba63b1b4cdd2f1460195f1fdbbbf514c2b606a93849407f64c7d2ee23f08a1989e13c9c5ef518f2b428126c493d7c4fa82c7d937540fcbfa026afa6b45e",
+                "last_used_at": "2021-05-03T22:36:23.268174+00:00",
+                "last_used_ip": null,
+                "credential_id": null,
+                "version": "2021.4.6"
+            }
+        ]
+    }
+}
