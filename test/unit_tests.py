@@ -1,18 +1,15 @@
 from unittest import TestCase
 from hamcrest import assert_that, is_
 
-import Ice
-from kaf import AbstractRuleBuilder, AbstractRule,  Semantic
+from kaaf import AbstractRuleBuilder, AbstractRule, SconeClient
 
 
 class RulegenTests(TestCase):
     def setUp(self):
-        self.ic = Ice.initialize()
-        proxy = self.ic.stringToProxy('scone -t:tcp -p 5001')
-        self.scone = Semantic.SconeServicePrx.checkedCast(proxy)
+        self.scone = SconeClient(host='localhost', port=6517)
     
     def tearDown(self):
-        self.ic.destroy()
+        self.scone.close()
 
     def test_fact_rule(self):
         sut = AbstractRuleBuilder(self.scone, 'test/fact.scene')

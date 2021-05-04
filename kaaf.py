@@ -5,10 +5,8 @@ import sys
 
 import re
 import json
-import Ice
 
-Ice.loadSlice('-I /usr/share/slice /usr/share/slice/dharma/scone-wrapper.ice --all')
-import Semantic
+from scone_client import SconeClient
 
 
 class AbstractRule:
@@ -90,12 +88,12 @@ class AbstractRuleBuilder:
 
     def is_sensor(self, device):
         request = '(is-x-a-y? {%s}{sensor})' % (device['type'])
-        reply = self.scone.request(request)
+        reply = self.scone.predicate(request)
         return reply == 'YES'
 
     def get_provisions(self, provider):
         request = '(list-all-x-inverse-of-y {provider}{%s})' % (provider)
-        reply = self.scone.request(request)
+        reply = self.scone.sentence(request)
         resources = self.parse_entities(reply)
         provisions = []
 
@@ -117,13 +115,13 @@ class AbstractRuleBuilder:
 
     def get_instances(self, instance_type):
         request = '(list-instances {%s})' % (instance_type)
-        reply = self.scone.request(request)
+        reply = self.scone.sentence(request)
 
         return self.parse_entities(reply)
 
     def get_rel_element(self, link_element, relation):
         request = '(%s-element {%s})' % (link_element, relation)
-        reply = self.scone.request(request)
+        reply = self.scone.sentence(request)
 
         return self.parse_entities(reply)[0]
 
@@ -143,21 +141,9 @@ class AbstractRuleBuilder:
         return relations
 
 
-class KAF_Client(Ice.Application):
-    def run(self, argv):
-        self.ic = self.communicator()
-        scone = self.scone_service()
-        AbstractRuleBuilder(scone, argv[1])
-
-    def scone_service(self):
-        proxy = self.ic.propertyToProxy('Scone.Proxy')
-        scone = Semantic.SconeServicePrx.checkedCast(proxy)
-
-        if not scone:
-            raise RuntimeError('Invalid proxy')
-
-        return scone
-
-
 if __name__ == '__main__':
-    sys.exit(KAF_Client().main(sys.argv))
+    scone = SconeClient(host='localhost', port=6517)
+    abstract_rule_builder = AbstractRuleBuilder(scone, sys.argv[1])
+    rules = abstract_rule_builder.rules
+    [print('----\n{}'.format(rule)) for rule in rules]
+    scone.close()
