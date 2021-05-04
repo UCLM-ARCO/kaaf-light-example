@@ -34,8 +34,7 @@ To generate the automation rules for the scenario described above, the commonsen
 Add the [ARCO deb-package repository](https://uclm-arco.github.io/debian/) to your *sources.list* and install the following dependencies:
 
 - scone-server
-- scone-wrapper
-- python3-zeroc-ice
+- python3-scone-client
 
 Run the example with:
 
