@@ -1,0 +1,62 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "Home",
+            "views": [
+                {
+                    "path": "default_view",
+                    "title": "Home",
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.virtual_living_room_ms",
+                                "light.virtual_living_room_b"
+                            ],
+                            "title": "Living Room",
+                            "show_header_toggle": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.virtual_bedroom_ms"
+                            ],
+                            "title": "Bedroom",
+                            "show_header_toggle": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "light.virtual_kitchen_b"
+                            ],
+                            "title": "Kitchen",
+                            "show_header_toggle": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                "binary_sensor.virtual_garage_ms",
+                                "light.virtual_garage_b"
+                            ],
+                            "title": "Garage",
+                            "show_header_toggle": true
+                        },
+                        {
+                            "type": "button",
+                            "entity": "light.virtual_daylight",
+                            "icon": "hass:white-balance-sunny",
+                            "show_icon": true,
+                            "show_state": true,
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "name": "Daylight"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

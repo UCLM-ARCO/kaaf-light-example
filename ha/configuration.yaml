@@ -5,25 +5,29 @@ virtual:
 
 binary_sensor:
   - platform: virtual
-    name: 'living-room-ms'
+    name: 'living_room_ms'
     class: occupancy
   - platform: virtual
-    name: 'bedroom-ms'
+    name: 'bedroom_ms'
     class: occupancy
   - platform: virtual
-    name: 'garage-ms'
+    name: 'garage_ms'
     class: occupancy
 
 light:
   - platform: virtual
-    name: 'living-room-b'
+    name: 'living_room_b'
     initial_value: 'off'
   - platform: virtual
-    name: 'kitchen-b'
+    name: 'kitchen_b'
     initial_value: 'off'
   - platform: virtual
-    name: 'garage-b'
+    name: 'garage_b'
     initial_value: 'off'
+  - platform: virtual
+    name: 'daylight'
+    initial_value: 'on'
+
 
 group:
   living-room:

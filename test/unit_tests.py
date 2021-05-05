@@ -25,6 +25,16 @@ class RulegenTests(TestCase):
                 'value': 'occupied room'
             }])
 
+            # left = [{
+            #     'agent-id': 'room-1-ms',
+            #     'agent-type': 'motion-sensor',
+            #     'value': 'occupancy'
+            # }],
+            # right = [{
+            #     'location': 'room-1',
+            #     'value': 'occupied'
+            # }])
+
         assert_that(sut.rules, is_([expected]))
     
     def test_action_rule(self):
@@ -40,5 +50,16 @@ class RulegenTests(TestCase):
                 'action': 'provide light',  # FIXME: provide light -> turn on
                 'object': 'room-1-b'
             }])
+
+            # left = [{
+            #     'location': 'room-1',
+            #     'value': 'occupied'
+            # }],
+            # right = [{
+            #     'action': 'turn on', 
+            #     'conditions': ['daylight': false]
+            #     'object-id': 'room-1-b',
+            #     'object-type': 'bulb'
+            # }])
 
         assert_that(sut.rules, is_([expected]))
