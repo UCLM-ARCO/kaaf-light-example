@@ -1,6 +1,13 @@
 # KAAF
 In a nutshell, KAAF aims to be a system capable of processing information and knowledge about how the world works (user habits, general facts like _fire burns_, etc.), general human intentions and needs and specific contexts to, through commonsense reasoning processes, deduce, define, monitor and update the automation rules that drive the behaviour of Smart Home systems, normally defined manually by users. The name of the system is derived from a three-layered knowledge management system in which **K**nowledge is defined for the creation of **A**utonomous **A**utomations that determine the system functioning when concrete **F**acts (that trigger the rules) are deduced from the events captured from the environment.
 
+## Related publication
+This work has been published and presented in the [25th International Conference on Knowledge-Based and Intelligent Information & Engineering Systems](http://kes2021.kesinternational.org/). You can find the publication here:
+
+:green_circle: *[Leveraging commonsense reasoning towards a smarter Smart Home](https://www.sciencedirect.com/science/article/pii/S1877050921015568)*
+
+This paper is partially supported by European Union’s Horizon 2020 research and innovation programme under grant agreement no. 857159, project SHAPES (Smart & Healthy Ageing through People Engaging in Supportive Systems). It is also founded by the Ministry of Economy and Competitiveness (MINECO) of the Spanish Government (PLATINO project, no. TEC2017-86722-C4-4-R) and the Regional Government of Castilla-La Mancha under FEDER funding (SymbIoT project, no. SBPLY-17-180501-000334)
+
 # What can you find in this repo?
 This repository shows the KAAF system in a very early stage of development. It is provided a basic implementation of KAAF for Smart Home lighting problems, as a proof of concept. The material used is the following: 
 
